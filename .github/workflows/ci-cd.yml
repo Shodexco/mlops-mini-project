@@ -29,7 +29,7 @@ jobs:
           context: .
           file: Dockerfile.fa
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mlops-mini-project-fastapi:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-mini-project-fastapi:latest
 
       # Step 4: Build and push Streamlit Dashboard Docker image
       - name: Build and push Dashboard image
@@ -38,4 +38,4 @@ jobs:
           context: ./frontend
           file: Dockerfile.dashboard
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mlops-mini-project-dashboard:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-mini-project-dashboard:latest
