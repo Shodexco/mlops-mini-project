@@ -11,18 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Docker login
+      - name: Validate Docker Hub secrets
+        run: |
+          if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ] || [ -z "${{ secrets.DOCKERHUB_PASSWORD }}" ]; then
+            echo "ERROR: Missing Docker Hub secrets. Please add DOCKERHUB_USERNAME and DOCKERHUB_PASSWORD to repository secrets."
+            exit 1
+          fi
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      # Step 3: Build and push FastAPI Docker image
       - name: Build and push FastAPI image
         uses: docker/build-push-action@v5
         with:
@@ -30,8 +34,8 @@ jobs:
           file: Dockerfile.fa
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-mini-project-fastapi:latest
+          platforms: linux/amd64
 
-      # Step 4: Build and push Streamlit Dashboard Docker image
       - name: Build and push Dashboard image
         uses: docker/build-push-action@v5
         with:
@@ -39,3 +43,4 @@ jobs:
           file: Dockerfile.dashboard
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-mini-project-dashboard:latest
+          platforms: linux/amd64
