@@ -33,7 +33,7 @@ jobs:
       - name: Build Dashboard Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./mlops-mini-project/frontend
+          context: .
           file: Dockerfile.dashboard
           push: false
           tags: mlops-mini-project-dashboard:latest
