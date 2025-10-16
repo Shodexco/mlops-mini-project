@@ -34,6 +34,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./frontend
-          file: Dockerfile.dashboard
+          file: Dockerfile
           push: false
           tags: mlops-mini-project-dashboard:latest
