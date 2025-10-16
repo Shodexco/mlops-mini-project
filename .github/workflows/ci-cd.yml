@@ -1,0 +1,39 @@
+name: CI/CD Pipeline (Docker Build)
+
+# Run this workflow on pushes and pull requests to main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Docker (comes pre-installed on ubuntu-latest)
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      # Step 3: Build FastAPI image
+      - name: Build FastAPI Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.fa
+          push: false
+          tags: mlops-mini-project-fastapi:latest
+
+      # Step 4: Build Streamlit Dashboard image
+      - name: Build Dashboard Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          file: Dockerfile.dashboard
+          push: false
+          tags: mlops-mini-project-dashboard:latest
