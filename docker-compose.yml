@@ -12,7 +12,7 @@ services:
   dashboard:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dashboard
     container_name: gym_dashboard
     ports:
       - "8501:8501"
