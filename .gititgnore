@@ -1,0 +1,58 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.env
+venv/
+env/
+.venv/
+
+# === Jupyter ===
+.ipynb_checkpoints/
+
+# === Logs ===
+*.log
+logs/
+nohup.out
+
+# === Data & Models ===
+data/
+models/
+*.h5
+*.pkl
+*.pt
+*.joblib
+*.csv
+*.parquet
+
+# === IDE / OS ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# === Docker ===
+*.pid
+*.tar
+docker-compose.override.yml
+
+# === Build / Dist ===
+build/
+dist/
+*.egg
+*.manifest
+
+# === Node (if frontend uses npm/yarn) ===
+frontend/node_modules/
+frontend/.env
+
+# === Temporary Files ===
+*.tmp
+*.swp
+*.bak
+
+# === GitHub Actions Cache ===
+.github/workflows/*.cache
